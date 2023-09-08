@@ -37,5 +37,5 @@ public class Burger {
 
     @Column(name = "protein")
     private double protein;
-    
+
 }
