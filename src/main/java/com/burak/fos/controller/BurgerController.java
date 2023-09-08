@@ -5,6 +5,7 @@ import com.burak.fos.service.BurgerService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +28,11 @@ public class BurgerController {
     public ResponseEntity<List<BurgerDTO>> saveBurgerList(@RequestBody List<BurgerDTO> burgerDTOList) {
 
         return burgerService.saveBurgerList(burgerDTOList);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BurgerDTO>> findAllBurgers() {
+
+        return burgerService.findAllBurgers();
     }
 }
