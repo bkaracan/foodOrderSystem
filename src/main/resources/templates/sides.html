@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Sides</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap"
+        rel="stylesheet">
+  <style>
+    .price-badge {
+      background-color: #241468;
+      color: white;
+      border-radius: 12px;
+      padding: 5px 10px;
+      font-size: 1.2em;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .card-img-top {
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .card:hover {
+    background-color: #ECF2FF;
+    transition: background-color 0.3s;
+    }
+
+    .header-title {
+      text-align: center;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      border-bottom: 2px solid black;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .beverage-icon {
+      height: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .card-title, .card-text {
+      font-family: 'Varela Round', sans-serif;
+    }
+
+    .add-button {
+      font-size: 1rem;
+      background-color: #241468;
+      color: white;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 5px 10px;
+      transition: background-color 0.3s;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .add-button:hover {
+      background-color: #45FFCA;
+    }
+
+    .add-icon {
+      margin-right: 5px;
+      font-size: 1rem;
+    }
+
+    .nutrition-button {
+    background-color: #241468;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .nutrition-button:hover {
+    background-color: #45FFCA;
+  }
+
+
+  </style>
+</head>
+<body>
+<div class="text-center mt-3 mb-5">
+  <img src="/images/logo.jpg" alt="Company Logo" class="img-fluid" style="max-width: 80px;">
+</div>
+<div class="container mt-5">
+  <div class="header-title">
+    <img src="/images/sides.png" alt="Sides Icon" class="sides-icon" style="max-width: 80px;">
+    Sides
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" th:each="sides : ${sides}">
+      <div class="card position-relative">
+        <img class="card-img-top"
+             th:src="@{'/images/' + ${sides.name} + '.jpg'}"
+             alt="Beverage Image">
+        <div class="card-body">
+          <h5 class="card-title">
+            <span th:text="${sides.name}"></span> <span th:text="${sides.size}"></span>
+          </h5>
+          <p class="card-text">
+            <span class="price-badge"
+                  th:text="${#numbers.formatDecimal(sides.price, 1, 2) + ' ₺'}"></span>
+            <button class="btn add-button">
+              <span class="add-icon"><b>+</b></span>
+              Add
+            </button>
+          </p>
+          <div class="dropdown">
+            <button class="btn nutrition-button dropdown-toggle" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+              Nutrition Values
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Kcal: <span th:text="${sides.kcal}"></span></a>
+              <a class="dropdown-item" href="#">Carbs: <span
+                  th:text="${sides.carbonhydrate}"></span> g</a>
+              <a class="dropdown-item" href="#">Fat: <span th:text="${sides.fat}"></span> g</a>
+              <a class="dropdown-item" href="#">Protein: <span th:text="${sides.protein}"></span> g</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
