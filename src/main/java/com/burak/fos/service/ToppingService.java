@@ -6,7 +6,13 @@ import org.springframework.http.ResponseEntity;
 
 public interface ToppingService {
 
-    public ResponseEntity<ToppingDTO> saveTopping(ToppingDTO toppingDTO);
+    ResponseEntity<ToppingDTO> saveTopping(ToppingDTO toppingDTO);
 
-    public ResponseEntity<List<ToppingDTO>> saveToppingList(List<ToppingDTO> toppingDTOList);
- }
+    ResponseEntity<List<ToppingDTO>> saveToppingList(List<ToppingDTO> toppingDTOList);
+
+    ResponseEntity<List<ToppingDTO>> findAllToppings();
+
+    ResponseEntity<ToppingDTO> findToppingById(Long id);
+
+    ResponseEntity<ToppingDTO> updateTopping(ToppingDTO toppingDTO);
+}
