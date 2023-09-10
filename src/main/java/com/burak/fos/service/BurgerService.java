@@ -11,4 +11,8 @@ public interface BurgerService {
     public ResponseEntity<List<BurgerDTO>> saveBurgerList(List<BurgerDTO> burgerDTOList);
 
     public ResponseEntity<List<BurgerDTO>> findAllBurgers();
+
+    public ResponseEntity<BurgerDTO> findBurgerById(Long id);
+
+    public ResponseEntity<BurgerDTO> updateBurger(BurgerDTO burgerDTO);
 }

@@ -11,14 +11,11 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BurgerDTO {
+public class ToppingDTO {
 
     private Long id;
     private String name;
-    private String description;
     private double price;
-    private double carbonhydrate;
-    private double fat;
-    private double protein;
+    private BurgerDTO burgerDTO;
 
 }

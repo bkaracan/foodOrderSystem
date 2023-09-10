@@ -32,5 +32,5 @@ public class Topping {
     @ManyToOne(targetEntity = Burger.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "burger_id")
     private Burger burger;
-    
+
 }

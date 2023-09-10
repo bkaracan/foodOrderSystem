@@ -2,6 +2,7 @@ package com.burak.fos.service.impl;
 
 import com.burak.fos.bean.burger.FindBurgerBean;
 import com.burak.fos.bean.burger.SaveBurgerBean;
+import com.burak.fos.bean.burger.UpdateBurgerBean;
 import com.burak.fos.dto.BurgerDTO;
 import com.burak.fos.service.BurgerService;
 import java.util.List;
@@ -15,10 +16,12 @@ public class BurgerServiceImpl implements BurgerService {
     @Autowired
     private final SaveBurgerBean saveBurgerBean;
     private final FindBurgerBean findBurgerBean;
+    private final UpdateBurgerBean updateBurgerBean;
 
-    public BurgerServiceImpl(SaveBurgerBean saveBurgerBean, FindBurgerBean findBurgerBean) {
+    public BurgerServiceImpl(SaveBurgerBean saveBurgerBean, FindBurgerBean findBurgerBean, UpdateBurgerBean updateBurgerBean) {
         this.saveBurgerBean = saveBurgerBean;
         this.findBurgerBean = findBurgerBean;
+        this.updateBurgerBean = updateBurgerBean;
     }
 
     @Override
@@ -34,5 +37,15 @@ public class BurgerServiceImpl implements BurgerService {
     @Override
     public ResponseEntity<List<BurgerDTO>> findAllBurgers() {
         return findBurgerBean.findAllBurgers();
+    }
+
+    @Override
+    public ResponseEntity<BurgerDTO> findBurgerById(Long id) {
+        return findBurgerBean.findBurgerById(id);
+    }
+
+    @Override
+    public ResponseEntity<BurgerDTO> updateBurger(BurgerDTO burgerDTO) {
+        return updateBurgerBean.updateBurger(burgerDTO);
     }
 }
