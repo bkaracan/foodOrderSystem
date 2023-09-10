@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class SaveBeverageBean {
@@ -22,6 +23,7 @@ public class SaveBeverageBean {
         this.beverageDTOMapper = beverageDTOMapper;
     }
 
+    @Transactional
     public ResponseEntity<BeverageDTO> saveBeverage(BeverageDTO beverageDTO) {
 
         try {
@@ -37,6 +39,7 @@ public class SaveBeverageBean {
 
     }
 
+    @Transactional
     public ResponseEntity<List<BeverageDTO>> saveBeverageList(List<BeverageDTO> beverageDTOList) {
 
         try {

@@ -19,7 +19,6 @@ public class ToppingDTOMapper {
         topping.setId(toppingDTO.getId());
         topping.setName(toppingDTO.getName());
         topping.setPrice(toppingDTO.getPrice());
-        topping.setBurger(burgerDTOMapper.convertToEntity(toppingDTO.getBurgerDTO()));
 
         return topping;
     }
@@ -30,7 +29,6 @@ public class ToppingDTOMapper {
         toppingDTO.setId(topping.getId());
         toppingDTO.setName(topping.getName());
         toppingDTO.setPrice(topping.getPrice());
-        toppingDTO.setBurgerDTO(burgerDTOMapper.convertToDto(topping.getBurger()));
 
         return toppingDTO;
     }

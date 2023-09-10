@@ -16,6 +16,5 @@ public class ToppingDTO {
     private Long id;
     private String name;
     private double price;
-    private BurgerDTO burgerDTO;
 
 }
