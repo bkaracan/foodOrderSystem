@@ -5,8 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -37,6 +41,14 @@ public class Burger {
 
     @Column(name = "protein")
     private double protein;
+
+    @ManyToMany
+    @JoinTable(
+            name = "burger_topping",
+            joinColumns = @JoinColumn(name = "burger_id"),
+            inverseJoinColumns = @JoinColumn(name = "topping_id")
+    )
+    private List<Topping> toppings;
 
 
 }

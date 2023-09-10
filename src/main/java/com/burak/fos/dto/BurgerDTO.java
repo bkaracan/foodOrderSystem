@@ -1,5 +1,6 @@
 package com.burak.fos.dto;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,5 +21,6 @@ public class BurgerDTO {
     private double carbonhydrate;
     private double fat;
     private double protein;
+    private List<ToppingDTO> toppings;
 
 }

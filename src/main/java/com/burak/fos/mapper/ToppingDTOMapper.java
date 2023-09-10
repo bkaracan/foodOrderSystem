@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ToppingDTOMapper {
 
-    @Autowired
-    private BurgerDTOMapper burgerDTOMapper;
-
     public Topping convertToEntity(ToppingDTO toppingDTO) {
 
         Topping topping = new Topping();

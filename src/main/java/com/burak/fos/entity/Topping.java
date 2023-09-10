@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -25,5 +27,8 @@ public class Topping {
 
     @Column(name = "price")
     private double price;
+
+    @ManyToMany(mappedBy = "toppings")
+    private List<Burger> burgers;
 
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/toppings")
+@RequestMapping("/topping")
 public class ToppingController {
 
     private final ToppingService toppingService;

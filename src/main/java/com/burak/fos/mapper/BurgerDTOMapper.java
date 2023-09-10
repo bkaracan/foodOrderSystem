@@ -1,13 +1,23 @@
 package com.burak.fos.mapper;
 
 import com.burak.fos.dto.BurgerDTO;
+import com.burak.fos.dto.ToppingDTO;
 import com.burak.fos.entity.Burger;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BurgerDTOMapper {
+
+    private final ToppingDTOMapper toppingDTOMapper;
+
+    @Autowired
+    public BurgerDTOMapper(ToppingDTOMapper toppingDTOMapper) {
+        this.toppingDTOMapper = toppingDTOMapper;
+    }
 
     public Burger convertToEntity(BurgerDTO burgerDTO) {
 
@@ -24,15 +34,23 @@ public class BurgerDTOMapper {
 
     public BurgerDTO convertToDto(Burger burger) {
 
-        return BurgerDTO.builder()
-                .id(burger.getId())
-                .name(burger.getName())
-                .description(burger.getDescription())
-                .price(burger.getPrice())
-                .carbonhydrate(burger.getCarbonhydrate())
-                .fat(burger.getFat())
-                .protein(burger.getProtein())
-                .build();
+       BurgerDTO burgerDTO = new BurgerDTO();
+
+        burgerDTO.setId(burger.getId());
+        burgerDTO.setName(burger.getName());
+        burgerDTO.setDescription(burger.getDescription());
+        burgerDTO.setPrice(burger.getPrice());
+        burgerDTO.setCarbonhydrate(burger.getCarbonhydrate());
+        burgerDTO.setFat(burger.getFat());
+        burgerDTO.setProtein(burger.getProtein());
+
+        List<ToppingDTO> toppings = burger.getToppings().stream()
+                .map(toppingDTOMapper::convertToDto)
+                .collect(Collectors.toList());
+
+        burgerDTO.setToppings(toppings);
+
+        return burgerDTO;
     }
 
     public List<Burger> convertToEntityList(List<BurgerDTO> burgerDTOs) {

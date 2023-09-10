@@ -2,89 +2,98 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Burgers</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
   <style>
-        .price-badge {
-            background-color: #241468;
-            color: white;
-            border-radius: 12px;
-            padding: 5px 10px;
-            font-size: 1.2em;
-            display: inline-block;
-            margin-right: 10px;
-        }
+    .price-badge {
+        background-color: #241468;
+        color: white;
+        border-radius: 12px;
+        padding: 5px 10px;
+        font-size: 1.2em;
+        display: inline-block;
+        margin-right: 10px;
+    }
 
-        .card-img-top {
-            height: 350px;
-            object-fit: cover;
-        }
+    .card-img-top {
+        height: 350px;
+        object-fit: cover;
+    }
 
-        .card:hover {
-            background-color: #ECF2FF;
-            transition: background-color 0.3s;
-        }
+    .card:hover {
+        background-color: #ECF2FF;
+        transition: background-color 0.3s;
+    }
 
-        .header-title {
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 700;
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            border-bottom: 2px solid black;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .burger-icon {
-            height: 50px;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
-        .card-title, .card-text {
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .add-button {
-            font-size: 1rem;
-            background-color: #241468;
-            color: white;
-            cursor: pointer;
-            border-radius: 12px;
-            padding: 5px 10px;
-            transition: background-color 0.3s;
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .add-button:hover {
-            background-color: #45FFCA;
-        }
-
-        .add-icon {
-            margin-right: 5px;
-            font-size: 1rem;
-        }
-
-        .nutrition-dropdown {
-            font-size: 1rem;
-            background-color: #241468;
-            color: white;
-            cursor: pointer;
-            border-radius: 12px;
-            padding: 5px 10px;
-            transition: background-color 0.3s;
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .nutrition-dropdown:hover {
-            background-color: #45FFCA;
-        }
+    .card:hover .card-img-top {
+      transform: scale(1.05);
+      transition: transform 0.3s;
+      z-index: 1;
+    }
 
 
-    </style>
+    .header-title {
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        border-bottom: 2px solid black;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    .burger-icon {
+        height: 50px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+    .card-title, .card-text {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .add-button {
+        font-size: 1rem;
+        background-color: #241468;
+        color: white;
+        cursor: pointer;
+        border-radius: 12px;
+        padding: 5px 10px;
+        transition: background-color 0.3s;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .add-button:hover {
+        background-color: #45FFCA;
+    }
+
+    .add-icon {
+        margin-right: 5px;
+        font-size: 1rem;
+    }
+
+    .nutrition-dropdown {
+        font-size: 1rem;
+        background-color: #241468;
+        color: white;
+        cursor: pointer;
+        border-radius: 12px;
+        padding: 5px 10px;
+        transition: background-color 0.3s;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .nutrition-dropdown:hover {
+        background-color: #45FFCA;
+    }
+
+
+  </style>
 </head>
 <body>
 <div class="text-center mt-3 mb-5">
@@ -99,23 +108,26 @@
   <div class="row">
     <div class="col-md-4 mb-4" th:each="burger : ${burgers}">
       <div class="card position-relative">
-        <img class="card-img-top"
-             th:src="@{'/images/' + ${burger.name} + '.jpg'}"
-             alt="Burger Image">
-        <div class="card-body">
+        <!-- Yalnızca resim ve başlık tıklanabilir hale getirildi -->
+        <a th:href="@{/toppings}" style="text-decoration: none; color: inherit;">
+          <img class="card-img-top"
+               th:src="@{'/images/' + ${burger.name} + '.jpg'}"
+               alt="Burger Image">
           <h5 class="card-title">
             <span th:text="${burger.name}"></span>
           </h5>
+        </a>
+        <div class="card-body">
           <p class="card-text">
             <span th:text="${burger.description}"></span>
           </p>
           <p class="card-text">
-                    <span class="price-badge"
-                          th:text="${#numbers.formatDecimal(burger.price, 1, 2) + ' ₺'}"></span>
-            <button class="btn add-button">
+                <span class="price-badge"
+                      th:text="${#numbers.formatDecimal(burger.price, 1, 2) + ' ₺'}"></span>
+            <a href="/toppings" class="btn add-button">
               <span class="add-icon"><b>+</b></span>
               Add
-            </button>
+            </a>
             <!-- Nutrition Values Dropdown -->
           <div class="dropdown">
             <button class="btn nutrition-dropdown" type="button" id="dropdownMenuButton"
@@ -123,7 +135,8 @@
               Nutrition Values
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" th:text="'Carbonhydrate: ' + ${burger.carbonhydrate} + 'g'"></a>
+              <a class="dropdown-item"
+                 th:text="'Carbonhydrate: ' + ${burger.carbonhydrate} + 'g'"></a>
               <a class="dropdown-item" th:text="'Fat: ' + ${burger.fat} + 'g'"></a>
               <a class="dropdown-item" th:text="'Protein: ' + ${burger.protein} + 'g'"></a>
             </div>
