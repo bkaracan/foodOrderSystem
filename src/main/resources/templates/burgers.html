@@ -2,10 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Burgers</title>
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-        rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     .price-badge {
         background-color: #241468;
@@ -32,7 +30,6 @@
       transition: transform 0.3s;
       z-index: 1;
     }
-
 
     .header-title {
         text-align: center;
@@ -91,8 +88,6 @@
     .nutrition-dropdown:hover {
         background-color: #45FFCA;
     }
-
-
   </style>
 </head>
 <body>
@@ -108,35 +103,25 @@
   <div class="row">
     <div class="col-md-4 mb-4" th:each="burger : ${burgers}">
       <div class="card position-relative">
-        <!-- Yalnızca resim ve başlık tıklanabilir hale getirildi -->
-        <a th:href="@{/toppings}" style="text-decoration: none; color: inherit;">
-          <img class="card-img-top"
-               th:src="@{'/images/' + ${burger.name} + '.jpg'}"
-               alt="Burger Image">
-          <h5 class="card-title">
-            <span th:text="${burger.name}"></span>
-          </h5>
+        <a th:href="@{'/toppings?burgerId=' + ${burger.id}}" style="text-decoration: none; color: inherit;">
+          <img class="card-img-top" th:src="@{'/images/' + ${burger.name} + '.jpg'}" alt="Burger Image">
+          <h5 class="card-title"><span th:text="${burger.name}"></span></h5>
         </a>
         <div class="card-body">
+          <p class="card-text"><span th:text="${burger.description}"></span></p>
           <p class="card-text">
-            <span th:text="${burger.description}"></span>
-          </p>
-          <p class="card-text">
-                <span class="price-badge"
-                      th:text="${#numbers.formatDecimal(burger.price, 1, 2) + ' ₺'}"></span>
-            <a href="/toppings" class="btn add-button">
+            <span class="price-badge" th:text="${#numbers.formatDecimal(burger.price, 1, 2) + ' ₺'}"></span>
+            <a th:href="@{'/toppings?burgerId=' + ${burger.id}}" class="btn add-button">
               <span class="add-icon"><b>+</b></span>
               Add
             </a>
             <!-- Nutrition Values Dropdown -->
           <div class="dropdown">
-            <button class="btn nutrition-dropdown" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn nutrition-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Nutrition Values
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item"
-                 th:text="'Carbonhydrate: ' + ${burger.carbonhydrate} + 'g'"></a>
+              <a class="dropdown-item" th:text="'Carbonhydrate: ' + ${burger.carbonhydrate} + 'g'"></a>
               <a class="dropdown-item" th:text="'Fat: ' + ${burger.fat} + 'g'"></a>
               <a class="dropdown-item" th:text="'Protein: ' + ${burger.protein} + 'g'"></a>
             </div>

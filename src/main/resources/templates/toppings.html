@@ -12,13 +12,13 @@
 
     .header-title {
         text-align: center;
-        font-size: 2.5em;
-        margin-bottom: 40px;
+        font-size: 1.2em;
+        margin-bottom: 5px;
+        margin-top: 3px;
     }
 
     table {
         width: 100%;
-        margin-top: 20px;
         border-collapse: collapse;
     }
 
@@ -29,15 +29,23 @@
     th {
         background-color: #241468;
         color: white;
+        font-size: 0.9em;
+        padding: 4px;
     }
 
     td {
         text-align: center;
-        padding: 8px;
+        padding: 4px;
+        font-size: 0.9em;
     }
 
     tr:hover {
         background-color: #f5f5f5;
+    }
+
+    .selected-burger-image {
+        max-width: 200px;
+        margin: auto;
     }
 
     .btn-topping {
@@ -50,34 +58,60 @@
         color: black;
     }
 
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        padding 1rem;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
   </style>
 </head>
 <body>
 
 <div class="container mt-5">
-  <div class="header-title">
-    Choose Your Toppings
-  </div>
+  <div class="card p-4">
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <!-- Seçilen Burger'ın Fotoğrafı ve Adı -->
+        <img th:src="@{'/images/' + ${selectedBurger.name} + '.jpg'}" class="img-fluid" alt="Selected Burger Image">
+        <h2 class="mt-3" th:text="${selectedBurger.name}"></h2>
+        <p th:text="${selectedBurger.description}"></p>
+      </div>
 
-  <table>
-    <thead>
-    <tr>
-      <th>Topping Name</th>
-      <th>Price</th>
-      <th>Add</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="topping : ${toppings}">
-      <td th:text="${topping.name}"></td>
-      <td th:text="${topping.price + ' ₺'}"></td>
-      <td><button class="btn btn-topping">Add</button></td>
-    </tr>
-    </tbody>
-  </table>
-
-  <div class="text-center mt-5">
-    <button class="btn btn-lg btn-success">Confirm Toppings</button>
+      <div class="col-md-6">
+        <!-- Toppings Tablosu -->
+        <div class="header-title">
+          Choose Your Toppings
+        </div>
+        <table class="table table-striped">
+          <thead>
+          <tr style="visibility: hidden;">
+            <th>Topping Name</th>
+            <th>Price</th>
+            <th>Add/Subtract</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="topping : ${toppings}">
+            <td th:text="${topping.name}"></td>
+            <td th:text="${topping.price + ' ₺'}"></td>
+            <td>
+              <button class="btn btn-success btn-sm">+</button>
+              <button class="btn btn-danger btn-sm">-</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-center mt-5">
+          <button class="btn btn-lg btn-success">Confirm Toppings</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

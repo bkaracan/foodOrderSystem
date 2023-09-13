@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BurgerWebController {
@@ -28,7 +29,9 @@ public class BurgerWebController {
     }
 
     @GetMapping("/toppings")
-    public String showToppings(Model model) {
+    public String showToppings(@RequestParam Long burgerId, Model model) {
+        BurgerDTO selectedBurger = burgerService.findBurgerById(burgerId).getBody();
+        model.addAttribute("selectedBurger", selectedBurger);
         List<ToppingDTO> toppingDTOList = toppingService.findAllToppings().getBody();
         model.addAttribute("toppings", toppingDTOList);
         return "toppings";
