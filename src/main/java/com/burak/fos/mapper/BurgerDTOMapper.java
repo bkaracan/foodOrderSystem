@@ -6,7 +6,6 @@ import com.burak.fos.entity.Burger;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
