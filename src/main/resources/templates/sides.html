@@ -25,10 +25,11 @@
       object-fit: cover;
     }
 
-    .card:hover {
-    background-color: #ECF2FF;
-    transition: background-color 0.3s;
-    }
+    .card:hover .card-img-top {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+    z-index: 1;
+}
 
     .header-title {
       text-align: center;
@@ -117,7 +118,9 @@
     </ul>
     <ul class="navbar-nav ml-auto"> <!-- Burada ml-auto sınıfını ekledik -->
       <li class="nav-item">
-        <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i></a>
+        <a class="nav-link" href="/cart">
+          <span id="cartTotal">0.00 ₺</span>
+          <i class="fas fa-shopping-cart"></i></a>
       </li>
     </ul>
   </div>
